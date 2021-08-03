@@ -13,13 +13,15 @@ interface Props {
     offsetX?:boolean,
 }
 
-const Container = styled.div`
+const Container = styled.div<Props>`
     width:100%;
-    height:120px;
+    /* height: 140px; */
+    height: ${(props) => props.offsetX ? 140 : 70}px;
     display:flex;
-    background:none;
+    background:${(props)=>props.offsetX ? 'none' : 'black'};
     color:white;
     position: fixed;
+    transition:all 0.3s;
     p{
         display:inline-block;
         line-height: 37px;
@@ -44,8 +46,9 @@ const P = styled.p<Props>`
     font-weight:${(props)=>props.weight};
 `;
 
-const ImgContainer = styled.div`
-    width:100%;height:60px;overflow:hidden;
+const ImgContainer = styled.div<Props>`
+    width:100%;height:${(props)=>props.offsetX ? 60 : 0}px;overflow:hidden;
+    transition: All 0.2s;
     img{
         display:block;
         width:500px;height:25px;
@@ -78,7 +81,7 @@ const Header = () => {
     },[]);
     return (
         <>
-            <Container>
+            <Container offsetX={offsetX}>
                 <ContentContainer>
                     <Img src={korea} 
                         float="left" 
@@ -93,7 +96,7 @@ const Header = () => {
                     <Img src={korea} 
                         float="right" 
                     /> 
-                    <ImgContainer>
+                    <ImgContainer offsetX={offsetX}>
                             <img src={logo} />
                     </ImgContainer>
                     <MenuTextContainer>
