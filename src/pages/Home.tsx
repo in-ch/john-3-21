@@ -2,7 +2,7 @@
 
 import mainImg  from "../assets/background1.png";
 import styled from "styled-components";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 import Footer from "../components/Footer";
 import Button from "../components/Button";
@@ -15,7 +15,10 @@ import lookbookColl from "../assets/lookbook_collect.png";
 import lookbookLook from "../assets/lookbook_look.png";
 import dulrubogi from "../assets/ar1.png";
 
-let wheelIndex = 0;
+interface PtagProps {
+    on:boolean,
+    this?:undefined,
+}
 
 const Container = styled.div`
     width:100%;
@@ -28,57 +31,74 @@ const Container = styled.div`
     }
 `;
 
+const Flex2P1 = styled.p<PtagProps>`
+    font-size:30px;font-weight:'bold';opacity:${((props)=>props.on ? 1 : 0)};
+    position:relative;left:${((props)=>props.on ? 0 : 40)}px;
+    transition: All 2s;
+`;
+const Flex2P2 = styled.p<PtagProps>`
+    font-size:15px;margin-top:50px;line-height:2;
+    opacity:${((props)=>props.on ? 1 : 0)};
+    position:relative;left:${((props)=>props.on ? 0 : 40)}px;
+    transition: All 3s;
+`;
 const LookBookDiv = styled.div`
     width:25%;height:75vh;text-align:center;
 `;
 
-const downEvent = ():void => {
-    if(wheelIndex>-1&&wheelIndex<5){
-        wheelIndex++; 
-    }
-
-    window.scrollBy({
-        top: window.innerHeight,
-        left: 0,
-        behavior: 'smooth'
-    });
-};
-const upEvent = ():void => {
-    if(wheelIndex<6&&wheelIndex>0){
-        wheelIndex--; 
-    }
-
-    if(wheelIndex >3){
-        window.scrollBy({
-            top: - (window.innerHeight/3),
-            left: 0,
-            behavior: 'smooth'
-        });
-    } else {
-        window.scrollBy({
-            top: - window.innerHeight,
-            left: 0,
-            behavior: 'smooth'
-        });
-    }
-};
-
-const KeydownEvnet = (e:any):void => {
-    if(e.which === 40){
-        downEvent();
-    } else if(e.which === 38) {
-        upEvent();
-    }
-    return ;
-};
 
 const Home = () => {
+
     const [width, setWidth] = useState(window.innerWidth*1.2);
+    const [wheelIndex, _setWheelIndex] = useState(0);
+    const myWheelIndexRef = useRef(wheelIndex);
+    const setWheelIndex = (data:number) => {
+        myWheelIndexRef.current = data;
+        _setWheelIndex(data);
+    };
+
+    const downEvent = ():void => {
+        if(myWheelIndexRef.current>-1&&myWheelIndexRef.current<5){
+            setWheelIndex(myWheelIndexRef.current + 1);
+        }
+        window.scrollBy({
+            top: window.innerHeight,
+            left: 0,
+            behavior: 'smooth'
+        });
+    };
+    const upEvent = ():void => {
+        if(myWheelIndexRef.current<6&&myWheelIndexRef.current>0){
+            setWheelIndex(myWheelIndexRef.current - 1);
+        }
+        if(myWheelIndexRef.current >3){
+            window.scrollBy({
+                top: - (window.innerHeight/3),
+                left: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            window.scrollBy({
+                top: - window.innerHeight,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+    };
     
+    const KeydownEvnet = (e:any):void => {
+        if(e.which === 40){
+            downEvent();
+        } else if(e.which === 38) {
+            upEvent();
+        }
+        console.log(myWheelIndexRef.current);
+    };
+
     useEffect(()=>{
         window.scrollTo({top:0});
         document.addEventListener("keydown",KeydownEvnet);
-    },[]);
+    },[100]);
 
     return (
         <>
@@ -95,8 +115,8 @@ const Home = () => {
                     <div style={{
                             marginTop:"25vh"
                         }}>
-                            <p style={{fontSize:30,fontWeight:'bold'}}>신제품 구경하기</p>
-                            <p style={{fontSize:15,marginTop:50,lineHeight:2}}>양 옆에 끝단으로 갈수록 얇아지는 패널을 블록하여 자연스럽게 늘어뜨려도 <br/>멋스러우며, 묶어서 스타일링 하기에도 좋습니다. <br/>오픈 칼라로 시크한 분위기를 살렸습니다.</p>
+                            <Flex2P1 on={wheelIndex === 1 ? true : false}>신제품 구경하기</Flex2P1>
+                            <Flex2P2 on={wheelIndex === 1 ? true : false}>양 옆에 끝단으로 갈수록 얇아지는 패널을 블록하여 자연스럽게 늘어뜨려도 <br/>멋스러우며, 묶어서 스타일링 하기에도 좋습니다. <br/>오픈 칼라로 시크한 분위기를 살렸습니다.</Flex2P2>
                             <Button text="자세히보기" />
                     </div>
                 </div>
@@ -106,8 +126,8 @@ const Home = () => {
                     <div style={{
                             marginTop:"25vh"
                         }}>
-                            <p style={{fontSize:30,fontWeight:'bold'}}>2021 F/W 컬렉션</p>
-                            <p style={{fontSize:15,marginTop:50,lineHeight:2}}>양 옆에 끝단으로 갈수록 얇아지는 패널을 블록하여 자연스럽게 늘어뜨려도 <br/>멋스러우며, 묶어서 스타일링 하기에도 좋습니다. <br/>오픈 칼라로 시크한 분위기를 살렸습니다.</p>
+                            <Flex2P1 on={wheelIndex === 2 ? true : false}>2021 F/W 컬렉션</Flex2P1>
+                            <Flex2P2 on={wheelIndex === 2 ? true : false}>양 옆에 끝단으로 갈수록 얇아지는 패널을 블록하여 자연스럽게 늘어뜨려도 <br/>멋스러우며, 묶어서 스타일링 하기에도 좋습니다. <br/>오픈 칼라로 시크한 분위기를 살렸습니다.</Flex2P2>
                             <Button text="자세히보기" />
                     </div>
                 </div>  
