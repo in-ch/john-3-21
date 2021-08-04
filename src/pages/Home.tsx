@@ -14,6 +14,7 @@ import lookbookArt from "../assets/lookbook_art.png";
 import lookbookColl from "../assets/lookbook_collect.png";
 import lookbookLook from "../assets/lookbook_look.png";
 import dulrubogi from "../assets/ar1.png";
+import Header from "src/components/Header";
 
 interface PtagProps {
     on:boolean,
@@ -102,6 +103,7 @@ const Home = () => {
 
     return (
         <>
+            <Header />
             <Container>  
                 <img style={{width}} src={mainImg} />
             </Container>

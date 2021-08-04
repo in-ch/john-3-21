@@ -11,14 +11,15 @@ interface Props {
     float?:string,
     weight?:string,
     offsetX?:boolean,
+    otherPage?:boolean, // 만약 메인 페이지가 아닌 다른 곳에서 불러왔다면, 
 }
 
 const Container = styled.div<Props>`
     width:100%;
     /* height: 140px; */
-    height: ${(props) => props.offsetX ? 140 : 70}px;
+    height: ${(props) => props.offsetX  && props.otherPage ? 140 : 70}px;
     display:flex;
-    background:${(props)=>props.offsetX ? 'none' : 'black'};
+    background:${(props)=>props.offsetX && props.otherPage ? 'none' : 'black'};
     color:white;
     position: fixed;
     transition:all 0.3s;
@@ -47,7 +48,7 @@ const P = styled.p<Props>`
 `;
 
 const ImgContainer = styled.div<Props>`
-    width:100%;height:${(props)=>props.offsetX ? 60 : 0}px;overflow:hidden;
+    width:100%;height:${(props)=>props.offsetX && props.otherPage ? 60 : 0}px;overflow:hidden;
     transition: All 0.2s;
     img{
         display:block;
@@ -66,8 +67,13 @@ const MenuTextContainer = styled.div`
 `;
 
 
-const Header = () => {
+const Header = ({otherPage}:Props) => {
     const [offsetX, setOffsetX] = useState(true);
+    if(!otherPage){
+        otherPage = true;
+    } else {
+        otherPage = false;
+    }
     function onScroll (){
         if(window.pageYOffset>50){
             setOffsetX(false);
@@ -81,7 +87,7 @@ const Header = () => {
     },[]);
     return (
         <>
-            <Container offsetX={offsetX}>
+            <Container otherPage={otherPage} offsetX={offsetX}>
                 <ContentContainer>
                     <Img src={korea} 
                         float="left" 

@@ -1,4 +1,3 @@
-import Header from "./Header"
 import { HelmetProvider } from "react-helmet-async";
 import {GlobalStyles} from "../styled";
 
@@ -11,7 +10,6 @@ const Layout = ({children}:Props) => {
         <>
             <HelmetProvider>
                 <GlobalStyles />
-                <Header />
                 {children}
             </HelmetProvider>
         </>
