@@ -20,6 +20,9 @@ interface PtagProps {
     on:boolean,
     this?:undefined,
 }
+interface stateProps {
+    Timeout:undefined,
+}
 
 const Container = styled.div`
     width:100%;
@@ -52,10 +55,17 @@ const Home = () => {
 
     const [width, setWidth] = useState(window.innerWidth*1.2);
     const [wheelIndex, _setWheelIndex] = useState(0);
+    const [timeoutValue, _setTimeoutValue] = useState(true);
     const myWheelIndexRef = useRef(wheelIndex);
+    const setTimeoutRef = useRef(timeoutValue);
+
     const setWheelIndex = (data:number) => {
         myWheelIndexRef.current = data;
         _setWheelIndex(data);
+    };
+    const setTimeoutValuex = (data:boolean) => {
+        setTimeoutRef.current = data;
+        _setTimeoutValue(data);
     };
 
     const downEvent = ():void => {
@@ -87,22 +97,41 @@ const Home = () => {
         }
     };
     
+    const scrollEvent = (e:any):void => {
+
+        if(setTimeoutRef.current){
+            if(e.deltaY>0){ 
+                downEvent();
+            } else {
+                upEvent();
+            }
+            setTimeoutValuex(false);
+            setTimeout(() => {
+                setTimeoutValuex(true);
+            },1000);
+        }
+    };
+
     const KeydownEvnet = (e:any):void => {
         if(e.which === 40){
             downEvent();
         } else if(e.which === 38) {
             upEvent();
         }
-        console.log(myWheelIndexRef.current);
+    };
+
+    const handleResize = (e:any):void => {
+        window.scrollTo({top:window.innerHeight*myWheelIndexRef.current});
     };
 
     useEffect(()=>{
         window.scrollTo({top:0});
         document.addEventListener("keydown",KeydownEvnet);
+        window.addEventListener("resize", handleResize);
     },[100]);
 
     return (
-        <>
+        <div onWheel={scrollEvent}>
             <Header />
             <Container>  
                 <img style={{width}} src={mainImg} />
@@ -110,7 +139,7 @@ const Home = () => {
             <Container>  
                 <div className="flex1">
                     <div style={{
-                        width:"80vh",height:"80vh",marginLeft:"10vh",marginTop:"15vh",backgroundImage:`url(${product1})`
+                        width:"65vh",height:"65vh",marginLeft:"10vh",marginTop:"20vh",backgroundImage:`url(${product1})`
                     }} />
                 </div>
                 <div className="flex2">
@@ -135,7 +164,7 @@ const Home = () => {
                 </div>  
                 <div className="flex1">
                     <div style={{
-                        width:"80vh",height:"80vh",marginLeft:"10vh",marginTop:"15vh",backgroundImage:`url(${product2})`
+                        width:"65vh",height:"65vh",marginLeft:"15vh",marginTop:"20vh",backgroundImage:`url(${product2})`
                     }} />
                 </div>
             </Container>
@@ -171,7 +200,7 @@ const Home = () => {
             <Container style={{height:'30vh'}}>
                 <Footer/>
             </Container>
-        </>
+        </div>
     )
 };
 
