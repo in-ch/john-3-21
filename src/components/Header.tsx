@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 import logo from "../assets/Logo.png";
 import korea from "../assets/korea_w.png";
-// import insta from "../assets/instagram.png";
-// import naver from "../assets/naver_icon.png";
-// import glass from "../assets/glass.png";
+import insta from "../assets/instagram.png";
+import naver from "../assets/naver_icon.png";
+import glass from "../assets/glass.png";
 
 interface Props {
     float?:string,
@@ -37,7 +37,7 @@ const Container = styled.div<Props>`
 const ContentContainer = styled.div`
     width:100%;height:40px;
     img{
-        width:40px;height:40px;
+        width:20px;height:20px;margin:7px;
     }
 `;
 const Img = styled.img<Props>`
@@ -95,13 +95,13 @@ const Header = ({otherPage}:Props) => {
                         float="left" 
                     /> 
                     <P weight={"bold"}>KOR</P>/<P>ENG</P>
-                    <Img src={korea} 
+                    <Img src={glass} 
                         float="right" 
                     /> 
-                    <Img src={korea} 
+                    <Img src={insta} 
                         float="right" 
                     /> 
-                    <Img src={korea} 
+                    <Img src={naver} 
                         float="right" 
                     /> 
                     <ImgContainer otherPage={otherPage} offsetX={offsetX}>
