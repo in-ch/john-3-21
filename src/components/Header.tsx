@@ -48,7 +48,9 @@ const P = styled.p<Props>`
 `;
 
 const ImgContainer = styled.div<Props>`
-    width:100%;height:${(props)=>props.offsetX && props.otherPage ? 60 : 0}px;overflow:hidden;
+    width:100%;
+    height: ${(props) => props.offsetX  && props.otherPage ? 60 : 0}px;
+    overflow:hidden;
     transition: All 0.2s;
     img{
         display:block;
@@ -102,7 +104,7 @@ const Header = ({otherPage}:Props) => {
                     <Img src={korea} 
                         float="right" 
                     /> 
-                    <ImgContainer offsetX={offsetX}>
+                    <ImgContainer otherPage={otherPage} offsetX={offsetX}>
                             <img src={logo} />
                     </ImgContainer>
                     <MenuTextContainer>

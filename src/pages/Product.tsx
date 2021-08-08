@@ -20,7 +20,7 @@ const ProductItemWrapper = styled.div`
     p{
         text-align:center;
         margin-top:5px;
-        font-size:18px;
+        font-size:16px;
         line-height:2;
     }
 `;
