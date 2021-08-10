@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.js": "/static/js/main.8b8bf6f6.chunk.js",
+    "main.js.map": "/static/js/main.8b8bf6f6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f60eeeb5.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f60eeeb5.js.map",
+    "static/js/2.20030d3d.chunk.js": "/static/js/2.20030d3d.chunk.js",
+    "static/js/2.20030d3d.chunk.js.map": "/static/js/2.20030d3d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.20030d3d.chunk.js.LICENSE.txt": "/static/js/2.20030d3d.chunk.js.LICENSE.txt",
+    "static/media/ART_IMG.c3212f19.png": "/static/media/ART_IMG.c3212f19.png",
+    "static/media/b11.1c533682.png": "/static/media/b11.1c533682.png",
+    "static/media/background1.f9454320.png": "/static/media/background1.f9454320.png",
+    "static/media/instagram.d4922e84.png": "/static/media/instagram.d4922e84.png",
+    "static/media/ka_small.5572e7ed.png": "/static/media/ka_small.5572e7ed.png",
+    "static/media/korea_w.22c57915.png": "/static/media/korea_w.22c57915.png",
+    "static/media/lookbook_art.fd30ede2.png": "/static/media/lookbook_art.fd30ede2.png",
+    "static/media/lookbook_collect.68f92dfe.png": "/static/media/lookbook_collect.68f92dfe.png",
+    "static/media/lookbook_look.209519eb.png": "/static/media/lookbook_look.209519eb.png",
+    "static/media/productImg1.a0b9f5a6.png": "/static/media/productImg1.a0b9f5a6.png",
+    "static/media/productImg2.bd1a13dc.png": "/static/media/productImg2.bd1a13dc.png",
+    "static/media/productImgOuter.5515d2c6.png": "/static/media/productImgOuter.5515d2c6.png",
+    "static/media/profileImg1.0cd450ed.png": "/static/media/profileImg1.0cd450ed.png",
+    "static/media/profileImg2.75de89eb.png": "/static/media/profileImg2.75de89eb.png",
+    "static/media/profileImg3.2436217d.png": "/static/media/profileImg3.2436217d.png",
+    "static/media/profileImg4.b4b7a6bb.png": "/static/media/profileImg4.b4b7a6bb.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f60eeeb5.js",
+    "static/js/2.20030d3d.chunk.js",
+    "static/js/main.8b8bf6f6.chunk.js"
+  ]
+}
