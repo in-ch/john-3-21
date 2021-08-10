@@ -3,6 +3,9 @@
 import mainImg  from "../assets/background1.png";
 import styled from "styled-components";
 import { useEffect, useState, useRef, useCallback } from "react";
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
 
 import Footer from "../components/Footer";
 import Button from "../components/Button";
@@ -50,8 +53,27 @@ const LookBookDiv = styled.div`
     width:25%;height:75vh;text-align:center;
 `;
 
+type RootStackParamList = {
+    Home: undefined;
+    Mail: undefined;
+    outer: undefined;
+    Profile: undefined;
+};
+
+interface NavProps {
+    navigation: StackNavigationProp<RootStackParamList>
+    route: RouteProp<RootStackParamList>;
+}
+
 
 const Home = () => {
+
+    // const goToMail = () => {
+    //     navigation.navigate("Mail");
+    // };
+    // const goToOuter = () => {
+    //     navigation.navigate("Mail");
+    // };
 
     const [width, setWidth] = useState(window.innerWidth*1.2);
     const [wheelIndex, _setWheelIndex] = useState(0);
