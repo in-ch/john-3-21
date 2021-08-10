@@ -3,9 +3,6 @@
 import mainImg  from "../assets/background1.png";
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-
 
 import Footer from "../components/Footer";
 import Button from "../components/Button";
@@ -53,13 +50,6 @@ const LookBookDiv = styled.div`
 
 
 const Home = () => {
-
-    // const goToMail = () => {
-    //     navigation.navigate("Mail");
-    // };
-    // const goToOuter = () => {
-    //     navigation.navigate("Mail");
-    // };
 
     const [width] = useState(window.innerWidth*1.2);
     const [wheelIndex, _setWheelIndex] = useState(0);
@@ -136,7 +126,7 @@ const Home = () => {
         window.scrollTo({top:0});
         document.addEventListener("keydown",KeydownEvnet);
         window.addEventListener("resize", handleResize);
-    },[100]);
+    },[wheelIndex]);
 
     return (
         <div onWheel={scrollEvent}>
