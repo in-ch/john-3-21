@@ -2,7 +2,7 @@
 
 import mainImg  from "../assets/background1.png";
 import styled from "styled-components";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -22,9 +22,6 @@ import Header from "src/components/Header";
 interface PtagProps {
     on:boolean,
     this?:undefined,
-}
-interface stateProps {
-    Timeout:undefined,
 }
 
 const Container = styled.div`
@@ -53,17 +50,6 @@ const LookBookDiv = styled.div`
     width:25%;height:75vh;text-align:center;
 `;
 
-type RootStackParamList = {
-    Home: undefined;
-    Mail: undefined;
-    outer: undefined;
-    Profile: undefined;
-};
-
-interface NavProps {
-    navigation: StackNavigationProp<RootStackParamList>
-    route: RouteProp<RootStackParamList>;
-}
 
 
 const Home = () => {
@@ -75,7 +61,7 @@ const Home = () => {
     //     navigation.navigate("Mail");
     // };
 
-    const [width, setWidth] = useState(window.innerWidth*1.2);
+    const [width] = useState(window.innerWidth*1.2);
     const [wheelIndex, _setWheelIndex] = useState(0);
     const [timeoutValue, _setTimeoutValue] = useState(true);
     const myWheelIndexRef = useRef(wheelIndex);

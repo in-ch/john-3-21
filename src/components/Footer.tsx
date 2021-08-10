@@ -24,13 +24,13 @@ const Footer = () => {
                 <p style={{fontSize:20,fontWeight:'bold'}}>Social Media</p>
                 <br/><br/>
                 <IconDiv>
-                    <img src={Ka} /> <p>Kakaotalk</p>
+                    <img src={Ka} alt="카카오톡" /> <p>Kakaotalk</p>
                 </IconDiv>
                 <IconDiv>
-                    <img src={In} /> <p>Instagram</p>
+                    <img src={In} alt="인스타그램" /> <p>Instagram</p>
                 </IconDiv>
                 <IconDiv>
-                    <img src={We} /> <p>Wechat</p>
+                    <img src={We} alt="위챗" /> <p>Wechat</p>
                 </IconDiv>
             </div>
             <div style={{flex:7, textAlign:'right',lineHeight:2}}>

@@ -65,7 +65,10 @@ const SearchBox = ({searchClicked, style}:Props) => {
                 <Wrapper>
                     <SearchContainer>
                         <div>
-                            <img src={blackGlass}/>
+                            <img 
+                                src={blackGlass}
+                                alt="검색어 버튼"
+                            />
                         </div>
                         <div>
                             <input type="text" />

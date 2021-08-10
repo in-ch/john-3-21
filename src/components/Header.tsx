@@ -123,21 +123,25 @@ const Header = ({otherPage, style}:Props) => {
             }}>
                 <ContentContainer>
                     <Img src={korea} 
+                        alt="클릭 시 언어 변경"
                         float="left" 
                     /> 
                     <P weight={"bold"}>KOR</P>/<P>ENG</P>
                     <Img src={searchClicked ? cancel_w : glass} 
                         onClick={clickGlass}
                         float="right" 
+                        alt="검색 버튼"
                     /> 
                     <Img src={insta} 
                         float="right" 
+                        alt="인스타그램"
                     /> 
                     <Img src={naver} 
                         float="right" 
+                        alt="네이버"
                     /> 
                     <ImgContainer otherPage={otherPage} offsetX={offsetX} searchClicked={searchClicked}>
-                            <img src={logo} />
+                            <img src={logo} alt="로고"/>
                     </ImgContainer>
                     <MenuTextContainer otherPage={otherPage} offsetX={offsetX} searchClicked={searchClicked}>
                         <div>
