@@ -4,6 +4,7 @@ import { BrowserRouter as Router,Switch, Route, Redirect } from "react-router-do
 import routes from "./routes";
 import Product from "./pages/Product";
 import Mail from "./pages/Mail";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
               </Route>
               <Route path={routes.mail} exact>
                   <Mail />
+              </Route>
+              <Route path={routes.profile} exact>
+                  <Profile />
               </Route>
             </Switch>
           </Router>

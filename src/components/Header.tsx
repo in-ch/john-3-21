@@ -6,20 +6,24 @@ import korea from "../assets/korea_w.png";
 import insta from "../assets/instagram.png";
 import naver from "../assets/naver_icon.png";
 import glass from "../assets/glass.png";
+import cancel_w from "../assets/cancel_w.png";
+import SearchBox from "./SearchBox";
+import BlackCotton from "./BlackCotton";
 
 interface Props {
     float?:string,
     weight?:string,
     offsetX?:boolean,
     otherPage?:boolean, // 만약 메인 페이지가 아닌 다른 곳에서 불러왔다면, 
+    searchClicked?:boolean,
+    style?:React.CSSProperties,
 }
 
 const Container = styled.div<Props>`
     width:100%;
-    /* height: 140px; */
-    height: ${(props) => props.offsetX  && props.otherPage ? 140 : 70}px;
+    height: ${(props) => (props.offsetX  && props.otherPage)  ? 140 : 70}px;
     display:flex;
-    background:${(props)=>props.offsetX && props.otherPage ? 'none' : 'black'};
+    background:${(props)=>(props.offsetX  && props.otherPage)  ? 'none' : 'black'};
     color:white;
     position: fixed;
     transition:all 0.3s;
@@ -59,18 +63,40 @@ const ImgContainer = styled.div<Props>`
     }
 `;
 
-const MenuTextContainer = styled.div`
+const MenuTextContainer = styled.div<Props>`
     width:95%;height:30px;margin-left:2.5%;align-items:center;justify-items:center;
     text-align:center;
     color:white;display:flex;
-    p{
+    div{
         flex:1;
+        &:hover{
+            .subMenu{
+                div{
+                    display:block;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .subMenu{
+        height:0;
+        div{
+            position: relative;top:-1px;
+            background:${(props)=>(props.offsetX  && props.otherPage)  ? 'none' : 'black'};
+            display:none;
+            opacity: 0;
+            p{
+                width:100%;
+                display:inline-block;
+            }
+        }
     }
 `;
 
+const Header = ({otherPage, style}:Props) => {
+    const [offsetX, setOffsetX] = useState<boolean>(true);
+    const [searchClicked, setSearchClicked] = useState<boolean>(false);
 
-const Header = ({otherPage}:Props) => {
-    const [offsetX, setOffsetX] = useState(true);
     if(!otherPage){
         otherPage = true;
     } else {
@@ -83,19 +109,25 @@ const Header = ({otherPage}:Props) => {
             setOffsetX(true);
         }
     };
-
+    const clickGlass = () => {
+            setSearchClicked(!searchClicked);
+    };
     useEffect(()=>{ 
         window.addEventListener('scroll', onScroll);        
     },[]);
+
     return (
         <>
-            <Container otherPage={otherPage} offsetX={offsetX}>
+            <Container otherPage={otherPage} searchClicked={searchClicked} offsetX={offsetX} style={{
+                ...style,
+            }}>
                 <ContentContainer>
                     <Img src={korea} 
                         float="left" 
                     /> 
                     <P weight={"bold"}>KOR</P>/<P>ENG</P>
-                    <Img src={glass} 
+                    <Img src={searchClicked ? cancel_w : glass} 
+                        onClick={clickGlass}
                         float="right" 
                     /> 
                     <Img src={insta} 
@@ -104,18 +136,64 @@ const Header = ({otherPage}:Props) => {
                     <Img src={naver} 
                         float="right" 
                     /> 
-                    <ImgContainer otherPage={otherPage} offsetX={offsetX}>
+                    <ImgContainer otherPage={otherPage} offsetX={offsetX} searchClicked={searchClicked}>
                             <img src={logo} />
                     </ImgContainer>
-                    <MenuTextContainer>
-                    <p>NEW ARRIVAL</p>
-                    <p>WOMEN</p>
-                    <p>MEN</p>
-                    <p>COLLECTION</p>
-                    <p>LOOKBOOK</p>
-                    <p>NEWS</p>
-                    <p>ABOUT JOHN 3:21</p>
+                    <MenuTextContainer otherPage={otherPage} offsetX={offsetX} searchClicked={searchClicked}>
+                        <div>
+                            <p style={{}}>NEW ARRIVAL</p>
+                        </div>
+                        <div>
+                            <p style={{}}>WOMAN</p>
+                            <div className="subMenu">
+                                <div>
+                                    <p>ALL</p>
+                                    <p>OUTER</p>
+                                    <p>TOPS</p>
+                                    <p>BOTTOMS</p>
+                                    <p>DRESSES</p>
+                                    <p>ACCESSORIES</p>
+                                    <p>SPECIAL</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p style={{}}>MEN</p>
+                            <div className="subMenu">
+                                <div>
+                                    <p>ALL</p>
+                                    <p>OUTER</p>
+                                    <p>TOPS</p>
+                                    <p>BOTTOMS</p>
+                                    <p>ACCESSORIES</p>
+                                    <p>SPECIAL</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p style={{}}>COLLECTION</p>
+                        </div>
+                        <div>
+                            <p style={{}}>LOOKBOOK</p>
+                        </div>
+                        <div>
+                            <p style={{}}>NEWS</p>
+                        </div>
+                        <div>
+                            <p style={{}}>ABOUT JOHN <span style={{color:'red'}}>3:21</span></p>
+                            <div className="subMenu">
+                                <div>
+                                    <p>PROFILE</p>
+                                    <p>ART</p>
+                                    <p>CONTACT</p>
+                                </div>
+                            </div>
+                        </div>
                     </MenuTextContainer>
+
+                    <BlackCotton searchClicked={searchClicked} style={{zIndex:2}} />
+                    <SearchBox searchClicked={searchClicked} style={{zIndex:3}} />
+
                 </ContentContainer>
             </Container>
         </>

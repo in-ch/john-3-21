@@ -132,7 +132,7 @@ const Home = () => {
 
     return (
         <div onWheel={scrollEvent}>
-            <Header />
+            <Header style={{zIndex:3}}/>
             <Container>  
                 <img style={{width}} src={mainImg} />
             </Container>
@@ -146,7 +146,7 @@ const Home = () => {
                     <div style={{
                             marginTop:"25vh"
                         }}>
-                            <Flex2P1 on={wheelIndex === 1 ? true : false}>신제품 구경하기</Flex2P1>
+                            <Flex2P1 on={wheelIndex === 1 ? true : false}>WOMAN</Flex2P1>
                             <Flex2P2 on={wheelIndex === 1 ? true : false}>양 옆에 끝단으로 갈수록 얇아지는 패널을 블록하여 자연스럽게 늘어뜨려도 <br/>멋스러우며, 묶어서 스타일링 하기에도 좋습니다. <br/>오픈 칼라로 시크한 분위기를 살렸습니다.</Flex2P2>
                             <Button text="자세히보기" />
                     </div>
@@ -157,7 +157,7 @@ const Home = () => {
                     <div style={{
                             marginTop:"25vh"
                         }}>
-                            <Flex2P1 on={wheelIndex === 2 ? true : false}>2021 F/W 컬렉션</Flex2P1>
+                            <Flex2P1 on={wheelIndex === 2 ? true : false}>MAN</Flex2P1>
                             <Flex2P2 on={wheelIndex === 2 ? true : false}>양 옆에 끝단으로 갈수록 얇아지는 패널을 블록하여 자연스럽게 늘어뜨려도 <br/>멋스러우며, 묶어서 스타일링 하기에도 좋습니다. <br/>오픈 칼라로 시크한 분위기를 살렸습니다.</Flex2P2>
                             <Button text="자세히보기" />
                     </div>
@@ -167,15 +167,6 @@ const Home = () => {
                         width:"65vh",height:"65vh",marginLeft:"15vh",marginTop:"20vh",backgroundImage:`url(${product2})`
                     }} />
                 </div>
-            </Container>
-            <Container style={{flexDirection:'column',textAlign:'center'}}> 
-                <div style={{
-                    width:'80%',height:'65vh',marginLeft:'10%',marginTop:'9.5vh',
-                    backgroundImage:`url(${ARTIMG})`,backgroundSize:'cover'
-                }} />
-                <p style={{fontSize:'30px',marginTop:'20px'}}>ART WORK</p>
-                <p style={{fontSize:15,marginTop:10,lineHeight:2}}>양 옆에 끝단으로 갈수록 얇아지는 패널을 블록하여 자연스럽게 늘어뜨려도 멋스러우며, 묶어서 스타일링 하기에도 좋습니다. 오픈 칼라로 시크한 분위기를 살렸습니다.</p>
-                <Button text={'자세히 보기'} style={{margin: '0 auto'}}/>
             </Container>
             <Container style={{flexDirection:'row', justifyContent:'space-between', padding:'10%'}}>
                 <LookBookDiv>
@@ -196,6 +187,15 @@ const Home = () => {
                     <p style={{fontSize:13,marginTop:10,color:'RGB(150,150,150)'}}>ART<br/>WORK</p>
                     <img src={dulrubogi} style={{transform:'scale(0.7)',marginTop:30}} />
                 </LookBookDiv>
+            </Container>
+            <Container style={{flexDirection:'column',textAlign:'center'}}> 
+                <div style={{
+                    width:'80%',height:'65vh',marginLeft:'10%',marginTop:'9.5vh',
+                    backgroundImage:`url(${ARTIMG})`,backgroundSize:'cover'
+                }} />
+                <p style={{fontSize:'30px',marginTop:'20px'}}>ART WORK</p>
+                <p style={{fontSize:15,marginTop:10,lineHeight:2}}>양 옆에 끝단으로 갈수록 얇아지는 패널을 블록하여 자연스럽게 늘어뜨려도 멋스러우며, 묶어서 스타일링 하기에도 좋습니다. 오픈 칼라로 시크한 분위기를 살렸습니다.</p>
+                <Button text={'자세히 보기'} style={{margin: '0 auto'}}/>
             </Container>
             <Container style={{height:'30vh'}}>
                 <Footer/>
